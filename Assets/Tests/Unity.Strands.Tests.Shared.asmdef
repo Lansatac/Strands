@@ -1,0 +1,16 @@
+{
+    "name": "Unity.Strands.Tests.Shared",
+    "rootNamespace": "Strands.Tests.Shared",
+    "references": [
+        "GUID:0e3a911a14c034647b86016b6a04c9be"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
