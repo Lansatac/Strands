@@ -25,6 +25,8 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: game-ci/unity-test-runner@1fcc491cbe03538810759b75052d726939d2cc6c
         uses: game-ci/unity-test-runner@v2.0-alpha-5
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           unityVersion: auto
           #projectPath:
