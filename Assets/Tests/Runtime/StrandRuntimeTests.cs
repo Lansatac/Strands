@@ -43,12 +43,12 @@ namespace Strands.Tests.Runtime
             Assert.That(Time.frameCount - startFrame, Is.EqualTo(1));
         }
         
-        [UnityTest]
-        public IEnumerator StrandYieldingWaitForEndOfFrameShouldWaitUntilEndOfFrame()
-        {
-            var startFrame = Time.frameCount;
-            yield return new WaitStrand(()=>new WaitForEndOfFrame());
-            Assert.That(Time.frameCount - startFrame, Is.Zero);
-        }
+        // [UnityTest]
+        // public IEnumerator StrandYieldingWaitForEndOfFrameShouldWaitUntilEndOfFrame()
+        // {
+        //     var startFrame = Time.frameCount;
+        //     yield return new WaitStrand(()=>new WaitForEndOfFrame());
+        //     Assert.That(Time.frameCount - startFrame, Is.Zero);
+        // }
     }
 }
