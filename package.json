@@ -1,0 +1,19 @@
+{
+  "name": "com.unity.strands",
+  "version": "0.1.0",
+  "displayName": "Strands",
+  "description": "A library for writing expressive, composable coroutines.",
+  "unity": "2020.3",
+  "documentationUrl": "https://github.com/Lansatac/Strands/wiki/",
+  "licensesUrl": "https://raw.githubusercontent.com/Lansatac/Strands/main/LICENSE",
+  "dependencies": {
+  },
+  "keywords": [
+    "coroutines"
+  ],
+  "author": {
+    "name": "Jason Yegge",
+    "email": "Lansatac@gmail.com",
+    "url": "https://www.thephilosophyofcode.com"
+  }
+}
