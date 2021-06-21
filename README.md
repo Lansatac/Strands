@@ -1,5 +1,6 @@
 # Strands
 [![CI](https://github.com/Lansatac/Strands/actions/workflows/main.yml/badge.svg)](https://github.com/Lansatac/Strands/actions/workflows/main.yml)
+
 A library for writing and composing expressive coroutines in Unity.
 
 ##Installing
