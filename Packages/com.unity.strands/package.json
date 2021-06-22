@@ -1,6 +1,6 @@
 {
   "name": "com.unity.strands",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "Strands",
   "description": "A library for writing expressive, composable coroutines.",
   "unity": "2020.3",
