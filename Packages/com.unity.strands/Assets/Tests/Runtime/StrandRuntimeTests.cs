@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
@@ -8,20 +7,6 @@ namespace Strands.Tests.Runtime
 {
     public class StrandRuntimeTests
     {
-        private class WaitStrand : Strand
-        {
-            private readonly Func<object> _waitObject;
-
-            public WaitStrand(Func<object> waitObject)
-            {
-                _waitObject = waitObject;
-            }
-
-            protected override IEnumerator Execute()
-            {
-                yield return _waitObject();
-            }
-        }
 
         /// <summary>
         /// Integration Test to ensure that Strands play nice with unity coroutine timing control objects. 
@@ -42,13 +27,5 @@ namespace Strands.Tests.Runtime
             yield return new WaitStrand(()=>null);
             Assert.That(Time.frameCount - startFrame, Is.EqualTo(1));
         }
-        
-        // [UnityTest]
-        // public IEnumerator StrandYieldingWaitForEndOfFrameShouldWaitUntilEndOfFrame()
-        // {
-        //     var startFrame = Time.frameCount;
-        //     yield return new WaitStrand(()=>new WaitForEndOfFrame());
-        //     Assert.That(Time.frameCount - startFrame, Is.Zero);
-        // }
     }
 }
