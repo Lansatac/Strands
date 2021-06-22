@@ -3,7 +3,7 @@
 
 A library for writing and composing expressive coroutines in Unity.
 
-##Installing
+## Installing
 1. Open "Window/Package Manager"
 2. Click the plus at the top left
 3. Click "Add package from git URL"
