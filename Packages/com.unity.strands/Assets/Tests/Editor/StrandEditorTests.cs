@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Strands.Tests.Shared;
 
-namespace Strands.Tests.Editor.Tests
+namespace Strands.Tests.Editor
 {
     public class StrandEditorTests
     {
