@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections;
+
+namespace Strands
+{
+    public class HandleErrorStrand<TStrand, TError, THandler> : Strand
+        where TStrand : IEnumerator
+        where TError : Exception
+        where THandler : IEnumerator
+    {
+        public readonly TStrand Strand;
+        private readonly Func<TError, THandler> _handlerGenerator;
+        private TError _error;
+
+        public HandleErrorStrand(TStrand strand, Func<TError, THandler> handlerGenerator)
+        {
+            Strand = strand;
+            _handlerGenerator = handlerGenerator;
+        }
+
+        protected override IEnumerator Execute()
+        {
+            while (StepWithCatch(Strand))
+            {
+                yield return Strand.Current;
+            }
+
+            if (_error == null) yield break;
+
+            var handler = _handlerGenerator(_error);
+            while (handler.MoveNext())
+            {
+                yield return handler.Current;
+            }
+        }
+
+        private bool StepWithCatch(TStrand strand)
+        {
+            bool moveNext;
+            try
+            {
+                moveNext = strand.MoveNext();
+            }
+            catch (TError e)
+            {
+                _error = e;
+                moveNext = false;
+            }
+
+            return moveNext;
+        }
+    }
+}
