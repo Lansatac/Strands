@@ -23,7 +23,7 @@ namespace Strands
         /// the second is run.
         /// </summary>
         /// <param name="first">IEnumerator to be executed first.</param>
-        /// <param name="condition"></param>
+        /// <param name="condition">The condition that if true will cause the second Strand to execute.</param>
         /// <param name="secondGenerator">After the first coroutine is run, if the condition function returns true, this function is invoked to generate the second action.</param>
         public static ThenStrand<TFirst, TSecond> Then<TFirst, TSecond>(this TFirst first, Func<TFirst, bool> condition,
             Func<TFirst, TSecond> secondGenerator)
@@ -31,6 +31,32 @@ namespace Strands
             where TSecond : IEnumerator
         {
             return new ThenStrand<TFirst, TSecond>(first, secondGenerator, condition);
+        }
+
+        /// <summary>
+        /// Composes an IEnumerators together with an action invocation. Runs the coroutine, then invokes the method once it is complete.
+        /// </summary>
+        /// <param name="first">IEnumerator to be executed first.</param>
+        /// <param name="second">After the first coroutine is run, this function is invoked.</param>
+        public static ThenStrand<TFirst, ActionStrand> Then<TFirst>(this TFirst first,
+            Action<TFirst> second)
+            where TFirst : IEnumerator
+        {
+            return new ThenStrand<TFirst, ActionStrand>(first, firstPostExecute => new ActionStrand(()=>second(firstPostExecute)));
+        }
+
+        /// <summary>
+        /// Composes an IEnumerators together with an action invocation.
+        /// Runs the coroutine, then invokes the method once it is complete, if the condition is true.
+        /// </summary>
+        /// <param name="first">IEnumerator to be executed first.</param>
+        /// <param name="condition">The condition that if true will cause the action to be invoked.</param>
+        /// <param name="second">After the first coroutine is run, this function is invoked.</param>
+        public static ThenStrand<TFirst, ActionStrand> Then<TFirst>(this TFirst first, Func<TFirst, bool> condition,
+            Action<TFirst> second)
+            where TFirst : IEnumerator
+        {
+            return new ThenStrand<TFirst, ActionStrand>(first, firstPostExecute => new ActionStrand(()=>second(firstPostExecute)), condition);
         }
     }
 }
