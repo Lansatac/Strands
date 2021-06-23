@@ -33,7 +33,7 @@ namespace Strands
             }
 
             if (!_secondPredicate(_first)) yield break;
-            
+
             var second = _secondGenerator(_first);
             while (second.MoveNext())
             {

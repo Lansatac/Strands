@@ -8,21 +8,21 @@ namespace Strands
         where TError : Exception
         where THandler : IEnumerator
     {
-        public readonly TStrand Strand;
+        private readonly TStrand _strand;
         private readonly Func<TError, THandler> _handlerGenerator;
         private TError _error;
 
         public HandleErrorStrand(TStrand strand, Func<TError, THandler> handlerGenerator)
         {
-            Strand = strand;
+            _strand = strand;
             _handlerGenerator = handlerGenerator;
         }
 
         protected override IEnumerator Execute()
         {
-            while (StepWithCatch(Strand))
+            while (StepWithCatch(_strand))
             {
-                yield return Strand.Current;
+                yield return _strand.Current;
             }
 
             if (_error == null) yield break;
