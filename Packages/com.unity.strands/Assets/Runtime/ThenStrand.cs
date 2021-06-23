@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Strands
 {
-    public class ThenStrand<TFirst, TSecond> : Strand
+    public sealed class ThenStrand<TFirst, TSecond> : Strand
         where TFirst : IEnumerator
         where TSecond : IEnumerator
     {

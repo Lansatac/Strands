@@ -42,7 +42,8 @@ namespace Strands
             Action<TFirst> second)
             where TFirst : IEnumerator
         {
-            return new ThenStrand<TFirst, ActionStrand>(first, firstPostExecute => new ActionStrand(()=>second(firstPostExecute)));
+            return new ThenStrand<TFirst, ActionStrand>(first,
+                firstPostExecute => new ActionStrand(() => second(firstPostExecute)));
         }
 
         /// <summary>
@@ -56,7 +57,21 @@ namespace Strands
             Action<TFirst> second)
             where TFirst : IEnumerator
         {
-            return new ThenStrand<TFirst, ActionStrand>(first, firstPostExecute => new ActionStrand(()=>second(firstPostExecute)), condition);
+            return new ThenStrand<TFirst, ActionStrand>(first,
+                firstPostExecute => new ActionStrand(() => second(firstPostExecute)), condition);
+        }
+
+        /// <summary>
+        /// Composes two different IEnumerators together. Runs the first coroutine, then the second once the first is complete.
+        /// </summary>
+        /// <param name="first">IEnumerator to be executed first.</param>
+        /// <param name="secondGenerator">After the first coroutine is run, this function is invoked to generate the second action.</param>
+        public static ThenStrand<Strand<TFirstValue>, TSecond> Then<TFirstValue, TSecond>(
+            this Strand<TFirstValue> first,
+            Func<TFirstValue, TSecond> secondGenerator)
+            where TSecond : IEnumerator
+        {
+            return new ThenStrand<Strand<TFirstValue>, TSecond>(first, f => secondGenerator(f.Value));
         }
     }
 }

@@ -44,4 +44,9 @@ namespace Strands
             }
         }
     }
+
+    public abstract class Strand<T> : Strand
+    {
+        public T Value { get; protected set; }
+    }
 }
