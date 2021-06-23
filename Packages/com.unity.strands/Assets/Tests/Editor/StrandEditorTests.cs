@@ -5,8 +5,6 @@ namespace Strands.Tests.Editor
 {
     public class StrandEditorTests
     {
-
-        // A Test behaves as an ordinary method
         [Test]
         public void StrandShouldNotStepExecuteBeforeFirstMoveNext()
         {

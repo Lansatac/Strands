@@ -14,10 +14,9 @@ namespace Strands.Tests.Editor
             var composed = firstStrand.Then(_ => secondStrand);
             composed.MoveNext();
             
-            Assert.That(firstStrand.ExecuteCalled, Is.True);
             Assert.That(secondStrand.ExecuteCalled, Is.True);
         }
-        
+
         [Test]
         public void ThenStrandShouldNotExecuteNextStrandUntilComplete()
         {
@@ -27,7 +26,30 @@ namespace Strands.Tests.Editor
             var composed = firstStrand.Then(_ => secondStrand);
             composed.MoveNext();
             
-            Assert.That(firstStrand.StepsTaken, Is.EqualTo(1));
+            Assert.That(secondStrand.ExecuteCalled, Is.False);
+        }
+        
+        [Test]
+        public void ConditionalThenShouldExecuteNextWhenTrue()
+        {
+            var firstStrand = new NoOpStrand();
+            var secondStrand = new NoOpStrand();
+
+            var composed = firstStrand.Then(_ => true,_ => secondStrand);
+            composed.MoveNext();
+            
+            Assert.That(secondStrand.ExecuteCalled, Is.True);
+        }
+        
+        [Test]
+        public void ConditionalThenShouldNotExecuteNextWhenFalse()
+        {
+            var firstStrand = new NoOpStrand();
+            var secondStrand = new NoOpStrand();
+
+            var composed = firstStrand.Then(_ => false,_ => secondStrand);
+            composed.MoveNext();
+            
             Assert.That(secondStrand.ExecuteCalled, Is.False);
         }
     }
