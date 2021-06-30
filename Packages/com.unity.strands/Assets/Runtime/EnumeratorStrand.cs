@@ -2,7 +2,7 @@
 
 namespace Strands
 {
-    public class EnumeratorStrand : Strand
+    public sealed class EnumeratorStrand : Strand
     {
         private readonly IEnumerator _enumerator;
 

@@ -77,19 +77,5 @@ namespace Strands.Tests.Editor
 
             Assert.That(secondCalled, Is.True);
         }
-        
-        
-        [Test]
-        public void ValueThenShouldCompile()
-        {
-            var val = new SimpleValueStrand().Then((int _) => new NoOpStrand());
-            var firstStrand = new NoOpStrand();
-            var secondCalled = false;
-
-            var composed = firstStrand.Then(_ => true, _ => { secondCalled = true; });
-            composed.MoveNext();
-
-            Assert.That(secondCalled, Is.True);
-        }
     }
 }

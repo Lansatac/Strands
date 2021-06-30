@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace Strands
 {
-    public class ActionStrand : Strand
+    public sealed class ActionStrand : Strand
     {
-        private Action _action;
+        private readonly Action _action;
 
         public ActionStrand(Action action)
         {

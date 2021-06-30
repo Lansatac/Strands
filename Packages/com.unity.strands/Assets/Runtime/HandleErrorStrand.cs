@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Strands
 {
-    public class HandleErrorStrand<TStrand, TError, THandler> : Strand
+    public sealed class HandleErrorStrand<TStrand, TError, THandler> : Strand
         where TStrand : IEnumerator
         where TError : Exception
         where THandler : IEnumerator
